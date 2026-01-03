@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
  import api from '../Services/Api';
-
+ import logotag from "../assets/logotag.png";
 
 
 
@@ -47,7 +47,7 @@ alert(e.response?.data?.message || "Invalid credentials");
       <div className="w-full max-w-md">
         <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 border border-slate-700">
           <div className="text-center mb-8">
-            <div className='flex items-center justify-center'><img className='h-20' src='./src/assets/logotag.png'></img><h1 className="text-white font-extrabold text-lg">Primetrade.AI</h1></div>
+            <div className='flex items-center justify-center'><img className='h-20' src={logotag}></img><h1 className="text-white font-extrabold text-lg">Primetrade.AI</h1></div>
             <h2 className="text-white text-md font-bold mb-2">Hello User, Welcome Back</h2>
             <p className="text-slate-400">Sign in to your account</p>
           </div>

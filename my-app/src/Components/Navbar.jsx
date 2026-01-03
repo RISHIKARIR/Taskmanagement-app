@@ -1,5 +1,5 @@
 import { MdLogout } from "react-icons/md";
-
+ import logotag from "../assets/logotag.png";
 
 
 
@@ -10,7 +10,7 @@ return(
 
 <div className="bg-gray-800 h-20 w-full border-white flex items-center px-5 justify-between">
 <div className="flex items-center justify-center">
-<img className="h-15" src="./src/assets/logotag.png"></img><h1 className="text-white text-md font-serif font-bold">Primetrade.AI</h1>
+<img className="h-15" src={logotag}></img><h1 className="text-white text-md font-serif font-bold">Primetrade.AI</h1>
 
 </div>
 

@@ -47,21 +47,27 @@ app.get("/api/health", (req, res) => {
 
 
 app.post("/api/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-  if (!name || !email || !password) {
-    return res.status(400).json({ message: "All fields required" });
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
+
+    const userExists = users.find((u) => u.email === email);
+    if (userExists) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    // Use bcryptjs to hash
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ name, email, password: hashedPassword });
+
+    res.json({ message: "User registered successfully" });
+  } catch (err) {
+    console.error("Register Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
-
-  const userExists = users.find((u) => u.email === email);
-  if (userExists) {
-    return res.status(400).json({ message: "User already exists" });
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  users.push({ name, email, password: hashedPassword });
-
-  res.json({ message: "User registered successfully" });
 });
 
 app.post("/api/login", async (req, res) => {
